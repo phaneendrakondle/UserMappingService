@@ -55,6 +55,15 @@ dependencies {
 
     implementation ("commons-net:commons-net:3.6")
 
+    // Override logback-core to fix CVE-2024-12801 SSRF vulnerability
+    constraints {
+        implementation("ch.qos.logback:logback-core:1.3.15") {
+            because("CVE-2024-12801: SSRF vulnerability in versions <= 1.3.14")
+        }
+        implementation("ch.qos.logback:logback-classic:1.3.15") {
+            because("CVE-2024-12801: SSRF vulnerability in versions <= 1.3.14")
+        }
+    }
 
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
